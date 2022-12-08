@@ -1,33 +1,40 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import './App.css';
+
+import Music from './components/Music'
+import Edit from './components/Edit'
+import Add from './components/Add'
 
 const App = () => {
 
   const [music,setMusic] = useState([])
+  
 
   const getMusic = () =>{
     axios.get('http://localhost:3000/music')
     .then((response) =>setMusic(response.data), (err) => console.log(err))
     .catch((error) => console.log(error))
   }
+
+
   const handleCreate = (data) => {
     axios.post('http://localhost:3000/music', data)
     .then((response) => {
        console.log(response)
-       setMusic([...music, response.data])
+       setMusic([...music, response.data]) 
+       getMusic()
     })
   }
-  
   
   const handleEdit = (data) => {
    axios.put('http://localhost:3000/music/' + data._id, data)
    .then((response) => {
-      let newMusic = music.map((music) => {
-        return music._id !== data._id? music:data         
+      let newMusic = music.map((musics) => {
+        return musics._id !== data._id? musics:data         
       })
       setMusic(newMusic)
+      getMusic()
    })
   }
   
@@ -37,9 +44,54 @@ const App = () => {
      let newMusic = music.filter((music) => {
         return music._id !== deletedMusic._id
      })
+     setMusic(newMusic)
     })
 }
 
+
+useEffect(() => {
+  getMusic()
+  
+}, [])
+
+
+return(
+  <div className='grid'>
+    
+
+    <nav className='nav'>
+      <h1>Music</h1>
+      <div className='nav-button'>
+        <Add handleCreate={handleCreate}/>
+      </div>
+    </nav>
+    <div className='left-side-bar'>
+    <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    
+    
+      <div className="scoll main">
+        {music.map((music) => {
+          return(
+            <div className=' card-container'>
+                
+                <Music music={music}/>
+                <div className='buttons'>
+              <Edit music={music} handleEdit={handleEdit}/>
+                <button className="btn btn-danger" onClick={() => {handleDelete(music)            
+                    }} value={music._id}>Delete a Song</button>
+                    </div>
+          </div>
+          
+          )
+          
+        })}
+      </div>
+        <div className='marquee'>marquee</div>
+   </div> 
+   
+   
+)
 
 }
 export default App;
