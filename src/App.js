@@ -65,29 +65,40 @@ return(
         <Add handleCreate={handleCreate}/>
       </div>
     </nav>
-    <div className='left-side-bar'>
-    <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    
-    
-      <div className="scoll main">
-        {music.map((music) => {
-          return(
-            <div className=' card-container'>
+    <div className='middle'>
+        <div className='left-side-bar'>
+          <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+          
+          
+            <div className="scroll main">
+              {music.map((music) => {
+                return(
+                  <div className=' card-container'>
+                      
+                      <Music music={music}/>
+                      <div className='buttons'>
+                    <Edit music={music} handleEdit={handleEdit}/>
+                      <button className="btn btn-danger" onClick={() => {handleDelete(music)            
+                          }} value={music._id}>Delete a Song</button>
+                          </div>
+                </div>
                 
-                <Music music={music}/>
-                <div className='buttons'>
-              <Edit music={music} handleEdit={handleEdit}/>
-                <button className="btn btn-danger" onClick={() => {handleDelete(music)            
-                    }} value={music._id}>Delete a Song</button>
-                    </div>
-          </div>
-          
-          )
-          
-        })}
-      </div>
-        <div className='marquee'>marquee</div>
+                )
+                
+              })}
+            </div>
+
+
+        <div className='marquee-container mt-3'>
+        <marquee direction="down">
+        {music.map((music) => {
+          return (<img className='marquee-image mt-2' src={music.image}/>)
+            })}
+        </marquee>
+        </div>
+
+    </div>
    </div> 
    
    
