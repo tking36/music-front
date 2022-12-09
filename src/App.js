@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 import Music from './components/Music'
+import Rock from './components/Rock'
 import Edit from './components/Edit'
 import Add from './components/Add'
 
@@ -54,34 +55,92 @@ useEffect(() => {
   
 }, [])
 
+const[showCards,setShowCards]=useState(true);
+
+const[showRock,setShowRock]=useState(false);
+
+const[showRockPlaylist,setShowRockPlaylist]=useState(false);
+
+const revealCards = () => {
+  setShowCards(true)
+  setShowRock(false)
+  setShowRockPlaylist(false)
+  
+}
+
+const revealRock = () => {
+  setShowCards(false)
+  setShowRock(true)
+  setShowRockPlaylist(false)
+  
+}
+
+const revealRockPlaylist = () => {
+  setShowCards(false)
+  setShowRock(false)
+  setShowRockPlaylist(true)
+
+}
+
+
+
 
 return(
   <div className='grid'>
     
 
     <nav className='nav'>
+      <div className='nav-buttons-left'>
+        <div class="btn-group genre">
+          <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Genre
+          </button>
+          <div class="dropdown-menu">
+            <button onClick={revealRock} className='btn btn-secondary'>Rock</button>
+          </div>
+        </div>
+        
+        <button  onClick={revealCards} className='btn btn-dark btn-lg all-songs' type='button'>All Songs</button>
+      </div>
       <h1>Music</h1>
       <div className='nav-button'>
         <Add handleCreate={handleCreate}/>
+        {/* <button onClick={revealEdit} className='btn btn-warning btn-lg edit-button'>Edit Song</button> */}
       </div>
     </nav>
     <div className='middle'>
         <div className='left-side-bar'>
+        <div class="btn-group genre">
+          <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Spotify Playlists
+          </button>
+          <div class="dropdown-menu">
+            <button onClick={revealRockPlaylist} className='btn btn-secondary'>Rock</button>
+          </div>
+        </div>
           <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
           
           
             <div className="scroll main">
+            {showRockPlaylist ? <iframe  src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
               {music.map((music) => {
                 return(
                   <div className=' card-container'>
+                      {showCards ? <>
+                       <Music music={music}/> 
+                       <Edit music={music} handleEdit={handleEdit}/>
+                          <button className="btn btn-danger" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
+                       </>
+                       : null}
                       
-                      <Music music={music}/>
-                      <div className='buttons'>
-                    <Edit music={music} handleEdit={handleEdit}/>
-                      <button className="btn btn-danger" onClick={() => {handleDelete(music)            
-                          }} value={music._id}>Delete a Song</button>
-                          </div>
+                      
+                     
+                      { showRock ? <> 
+                      <Rock music={music}/> 
+                      </>
+                      :  null}
+                      
                 </div>
                 
                 )
@@ -106,3 +165,5 @@ return(
 
 }
 export default App;
+
+

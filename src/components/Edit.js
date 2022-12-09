@@ -26,9 +26,14 @@ const Edit = (props) => {
         
    }
 
+   const [genre, setGenre] = useState(props.music.name) 
+
+   
+
     return (
-        <>
-        <button  type="button" class="btn btn-dark" data-toggle="modal" data-target="#example">
+        
+        <div>
+        {/* <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#example">
         Edit Song
         </button>
 
@@ -41,8 +46,10 @@ const Edit = (props) => {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div class="modal-body">
-                               
+                            <div class="modal-body"> */}
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Song</button>
+                                <div class="dropdown-menu">
                                 <form className="bg-light edit-form" onSubmit={handleSubmit}>
                                     <label className='form-label gray' htmlFor='image'>Image:</label>
                                     <input  className='form-control' type='text' name='image' onChange={handleChange} value={song.image}/>
@@ -81,15 +88,18 @@ const Edit = (props) => {
                                     <br/>
                             
                                 </form>
-                            </div>
+                                </div>
+                                </div>
+                            
+                            {/* </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                 </div>
             </div>
+        </div> */}
         </div>
-        </>
     )
 }
 
