@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #396284;
+  background-color: #00223e;
   /* overflow-x: hidden; 
   overflow-y: hidden;  */
 }
@@ -24,9 +24,12 @@ div.scroll {
 
 
 .nav {
-  background-color: #c6d0d8;
-  color: #8a1756;
+  background-color: #041a2d;
+  color: #a9153a;
+  
+  font-family: 'Bungee Shade', cursive;
   box-shadow: 0px 5px 10px rgb(0, 0, 0);
+  
 }
 
 
@@ -34,19 +37,22 @@ div.scroll {
 
 
 .left-side-bar {
-  background-color: #1da6ac;
+  background-color: #152f30;
   color: rgb(0, 0, 0);
   box-shadow: 0px 5px 10px rgb(0, 0, 0);
   width: 25rem;
+  margin-right: 10px;
 }
 
 
 
 .main {
-  color: #050505;
+  color: #0a0808;
+  text-shadow: 1px 1px 2px rgb(12, 49, 70), 0 0 1em rgb(167, 197, 190), 0 0 0.2em rgb(196, 196, 231);
   display: flex;
   flex-wrap: wrap;
   overflow: scroll;
+  font-family: 'Timmana', sans-serif;
   justify-content: space-around;
   box-shadow: 0px 5px 10px rgb(0, 0, 0);
   position: relative;
@@ -54,10 +60,11 @@ div.scroll {
   height: 50rem;
   
 }
-.marquee{
+
+/* .marquee{
   background-color: #8a1756;
   box-shadow: 0px 5px 10px rgb(0, 0, 0);
-}
+} */
 
 .card-container {
   display: flex;
@@ -90,9 +97,24 @@ div.scroll {
 
 .card{
   height: 55%;
-  background-color: rgb(128, 121, 111);
-  
+  background-color: rgb(78, 107, 125);
+  border-radius: 3%;
+  border-color: #22444a;
+  border-width: 10px;
+  color: white;
 }
+
+.card:hover{
+  height: 55%;
+  background-color: rgb(172, 194, 206);
+  border-radius: 3%;
+  text-shadow: 1px 1px 2px rgb(64, 61, 61), 0 0 1em rgb(2, 80, 65), 0 0 0.2em rgb(182, 182, 197);
+  border-color: #0a4447;
+  border-width: 5px;
+  transition: 1s all ease;
+  color: #083339;
+}
+
 
 nav {
   display: flex;
@@ -160,6 +182,20 @@ img {
   position: fixed;
 }
 
+.lyrics-button{
+  color: #b0b5b9;
+  background-color: #083339 !important;
+}
+
+
+
+
+
+
+
+
+
+
 ::-webkit-scrollbar {
   width: 10px;
   
@@ -174,4 +210,65 @@ img {
 ::-webkit-scrollbar-corner{
   background-color: #000000;
   width: 0px;
+}
+
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }

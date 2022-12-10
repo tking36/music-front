@@ -113,7 +113,7 @@ return(
   <div className='grid'>
     
 
-    <nav className='nav'>
+    <nav className='nav mb-3'>
       <div className='nav-buttons-left'>
        
         
@@ -165,8 +165,8 @@ return(
                       {showCards ? <>
                        <Music music={music}/> 
                        <Edit music={music} handleEdit={handleEdit}/>
-                          <button className="btn btn-danger" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
-                          <button className="btn btn-danger" onClick={() => {revealLyrics(music)}} value={music._id}>Lyrics</button>
+                          <button className="btn btn-danger mb-1" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
+                          <button class="glow-on-hover" onClick={() => {revealLyrics(music)}} value={music._id}>Lyrics</button>
                        </>
                        : null}
                       
