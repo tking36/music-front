@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 import Music from './components/Music'
+import Rap from './components/Rap'
 import Rock from './components/Rock'
 import Edit from './components/Edit'
 import Add from './components/Add'
@@ -61,25 +62,50 @@ const[showRock,setShowRock]=useState(false);
 
 const[showRockPlaylist,setShowRockPlaylist]=useState(false);
 
+const[showRap,setShowRap]=useState(false);
+
+const[showRapPlaylist,setShowRapPlaylist]=useState(false);
+
 const revealCards = () => {
   setShowCards(true)
   setShowRock(false)
+  setShowRap(false)
   setShowRockPlaylist(false)
+  setShowRapPlaylist(false)
   
 }
 
 const revealRock = () => {
   setShowCards(false)
   setShowRock(true)
+  setShowRap(false)
   setShowRockPlaylist(false)
+  setShowRapPlaylist(false)
   
 }
 
 const revealRockPlaylist = () => {
   setShowCards(false)
   setShowRock(false)
+  setShowRap(false)
   setShowRockPlaylist(true)
+  setShowRapPlaylist(false)
+}
 
+const revealRap = () => {
+  setShowCards(false)
+  setShowRock(false)
+  setShowRockPlaylist(false)
+  setShowRapPlaylist(false)
+  setShowRap(true)
+}
+
+const revealRapPlaylist = () => {
+  setShowCards(false)
+  setShowRock(false)
+  setShowRockPlaylist(false)
+  setShowRapPlaylist(true)
+  setShowRap(false)
 }
 
 
@@ -91,14 +117,7 @@ return(
 
     <nav className='nav'>
       <div className='nav-buttons-left'>
-        <div class="btn-group genre">
-          <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Genre
-          </button>
-          <div class="dropdown-menu">
-            <button onClick={revealRock} className='btn btn-secondary'>Rock</button>
-          </div>
-        </div>
+       
         
         <button  onClick={revealCards} className='btn btn-dark btn-lg all-songs' type='button'>All Songs</button>
       </div>
@@ -110,20 +129,33 @@ return(
     </nav>
     <div className='middle'>
         <div className='left-side-bar'>
-        <div class="btn-group genre">
-          <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Spotify Playlists
-          </button>
-          <div class="dropdown-menu">
-            <button onClick={revealRockPlaylist} className='btn btn-secondary'>Rock</button>
-          </div>
-        </div>
+          
+            <div class="btn-group genre">
+              <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Spotify Playlists
+              </button>
+              <div class="dropdown-menu">
+                <button onClick={revealRockPlaylist} className='btn btn-secondary'>Rock</button>
+                <button onClick={revealRapPlaylist} className='btn btn-secondary'>Rap</button>
+              </div>
+            </div>
+            <div class="btn-group genre">
+              <button  class="btn btn-dark btn-lg  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Genre
+              </button>
+              <div class="dropdown-menu">
+                <button onClick={revealRock} className='btn btn-secondary'>Rock</button>
+                <button onClick={revealRap} className='btn btn-secondary'>Rap</button>
+              </div>
+            </div>
           <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
           
           
             <div className="scroll main">
-            {showRockPlaylist ? <iframe  src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
+            {showRockPlaylist ? <iframe class="spotify-playlist" src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="800" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
+
+            {showRapPlaylist ? <iframe class="spotify-playlist"  src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
               {music.map((music) => {
                 return(
                   <div className=' card-container'>
@@ -138,6 +170,11 @@ return(
                      
                       { showRock ? <> 
                       <Rock music={music}/> 
+                      </>
+                      :  null}
+
+                      { showRap ? <> 
+                      <Rap music={music}/> 
                       </>
                       :  null}
                       
