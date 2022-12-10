@@ -81,6 +81,9 @@ const Edit = (props) => {
 
                                     <label className='form-label gray'htmlFor="player">player:</label>
                                     <input className='form-control' type='text' name="player" onChange={handleChange} value={song.player}/>
+
+                                    <label className='form-label gray'htmlFor="lyrics">Lyrics:</label>
+                                    <input className='form-control' type='text' name="lyrics" onChange={handleChange} value={song.lyrics}/>
                                     
                                     <br/>
                                     <input className="btn btn-dark" type='submit'/>

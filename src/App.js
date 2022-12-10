@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-
+import Lyrics from './components/Lyrics'
+import Favorite from './components/Favorite'
 import Music from './components/Music'
 import Rap from './components/Rap'
 import Rock from './components/Rock'
@@ -11,6 +12,7 @@ import Add from './components/Add'
 const App = () => {
 
   const [music,setMusic] = useState([])
+  const [lyrics,setLyrics] = useState([])
   
 
   const getMusic = () =>{
@@ -60,53 +62,49 @@ const[showCards,setShowCards]=useState(true);
 
 const[showRock,setShowRock]=useState(false);
 
-const[showRockPlaylist,setShowRockPlaylist]=useState(false);
+const[showFav,setShowFav]=useState(false);
 
 const[showRap,setShowRap]=useState(false);
 
-const[showRapPlaylist,setShowRapPlaylist]=useState(false);
+const[showLyrics,setShowLyrics]=useState(false);
+
+
 
 const revealCards = () => {
   setShowCards(true)
   setShowRock(false)
   setShowRap(false)
-  setShowRockPlaylist(false)
-  setShowRapPlaylist(false)
-  
+  setShowFav(false)
 }
 
 const revealRock = () => {
   setShowCards(false)
   setShowRock(true)
   setShowRap(false)
-  setShowRockPlaylist(false)
-  setShowRapPlaylist(false)
-  
-}
-
-const revealRockPlaylist = () => {
-  setShowCards(false)
-  setShowRock(false)
-  setShowRap(false)
-  setShowRockPlaylist(true)
-  setShowRapPlaylist(false)
+  setShowFav(false)
 }
 
 const revealRap = () => {
   setShowCards(false)
   setShowRock(false)
-  setShowRockPlaylist(false)
-  setShowRapPlaylist(false)
+  setShowFav(false)
   setShowRap(true)
 }
 
-const revealRapPlaylist = () => {
+const revealFav = () => {
   setShowCards(false)
   setShowRock(false)
-  setShowRockPlaylist(false)
-  setShowRapPlaylist(true)
+  setShowFav(true)
   setShowRap(false)
 }
+
+const revealLyrics = () => {
+  setShowLyrics(!showLyrics)
+  {music.map((music) => {
+    setLyrics(music.lyrics)
+  })}}
+
+
 
 
 
@@ -130,16 +128,9 @@ return(
     <div className='middle'>
         <div className='left-side-bar'>
           
+            
             <div class="btn-group genre">
-              <button  class="btn btn-dark btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Spotify Playlists
-              </button>
-              <div class="dropdown-menu">
-                <button onClick={revealRockPlaylist} className='btn btn-secondary'>Rock</button>
-                <button onClick={revealRapPlaylist} className='btn btn-secondary'>Rap</button>
-              </div>
-            </div>
-            <div class="btn-group genre">
+            <button onClick={revealFav} className='btn btn-secondary'>Favorites</button>
               <button  class="btn btn-dark btn-lg  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Genre
               </button>
@@ -148,14 +139,26 @@ return(
                 <button onClick={revealRap} className='btn btn-secondary'>Rap</button>
               </div>
             </div>
-          <iframe src="https://open.spotify.com/embed/track/508eAloKwV2WF4Agk94rQB?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              <div className='container'>
+                {music.map((music) => {
+                  return  (
+                    showLyrics ? <Lyrics music={music}/> : null
+                    
+                  )
+                  
+                })}
+                
+
+
+              </div>
+       
         </div>
           
           
             <div className="scroll main">
-            {showRockPlaylist ? <iframe class="spotify-playlist" src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="800" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
+            
 
-            {showRapPlaylist ? <iframe class="spotify-playlist"  src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> : null}
+            
               {music.map((music) => {
                 return(
                   <div className=' card-container'>
@@ -163,6 +166,7 @@ return(
                        <Music music={music}/> 
                        <Edit music={music} handleEdit={handleEdit}/>
                           <button className="btn btn-danger" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
+                          <button className="btn btn-danger" onClick={() => {revealLyrics(music)}} value={music._id}>Lyrics</button>
                        </>
                        : null}
                       
@@ -175,6 +179,11 @@ return(
 
                       { showRap ? <> 
                       <Rap music={music}/> 
+                      </>
+                      :  null}
+
+                      { showFav ? <> 
+                      <Favorite music={music}/> 
                       </>
                       :  null}
                       
