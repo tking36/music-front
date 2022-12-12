@@ -14,14 +14,14 @@ const App = () => {
   
 
   const getMusic = () =>{
-    axios.get('http://localhost:3000/music')
+    axios.get('https://my-music-library123.herokuapp.com//music')
     .then((response) =>setMusic(response.data), (err) => console.log(err))
     .catch((error) => console.log(error))
   }
 
 
   const handleCreate = (data) => {
-    axios.post('http://localhost:3000/music', data)
+    axios.post('https://my-music-library123.herokuapp.com//music', data)
     .then((response) => {
        console.log(response)
        setMusic([...music, response.data]) 
@@ -30,7 +30,7 @@ const App = () => {
   }
   
   const handleEdit = (data) => {
-   axios.put('http://localhost:3000/music/' + data._id, data)
+   axios.put('https://my-music-library123.herokuapp.com//music/' + data._id, data)
    .then((response) => {
       let newMusic = music.map((musics) => {
         return musics._id !== data._id? musics:data         
@@ -41,7 +41,7 @@ const App = () => {
   }
   
   const handleDelete = (deletedMusic) => {
-    axios.delete('http://localhost:3000/music/' + deletedMusic._id)
+    axios.delete('https://my-music-library123.herokuapp.com//music/' + deletedMusic._id)
     .then((response) => {
      let newMusic = music.filter((music) => {
         return music._id !== deletedMusic._id
@@ -50,16 +50,7 @@ const App = () => {
     })
 }
 
-const handleLyrics = (data) => {
-  axios.put('http://localhost:3000/music/' + data._id, data)
-  .then((response) => {
-     let newMusic = music.map((musics) => {
-       return musics._id !== data._id? musics:data         
-     })
-     setMusic(newMusic)
-     getMusic()
-  })
- }
+
 
 useEffect(() => {
   getMusic()
