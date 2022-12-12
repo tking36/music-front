@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 
 
 const Rap = (props) => {
@@ -10,7 +10,7 @@ const Rap = (props) => {
 
     return( 
 
-      <>
+      <React.Fragment>
       {genre === "Rap" ? 
         <div className="card mb-1 mt-3" style={{width: "15rem"}}>
         <img  src={props.music.image} className="card-img-top" alt="..."/>
@@ -26,13 +26,13 @@ const Rap = (props) => {
               :  <p className="card-text">Favorite: False</p>
               } 
             </div>
-      </div>
-  : null} 
-      </>
+        </div>
+      : null} 
+      </React.Fragment>
       
   
       
   )
-   }
+}
    
    export default Rap

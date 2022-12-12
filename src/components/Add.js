@@ -94,11 +94,6 @@ const Add = (props) => {
                                   <div id="emailHelp" class="form-text">Type in the player url from spotify</div>
                                 </div>
 
-                                <div className="mb-1">
-                                  <label htmlFor='lyrics' className="form-label">Lyrics: </label>
-                                  <input type="text" name='lyrics' onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                  <div id="emailHelp" class="form-text">Type in the lyrics of song</div>
-                                </div>
 
 
                                 <input type="submit"/>

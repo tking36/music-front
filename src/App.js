@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import Lyrics from './components/Lyrics'
 import Favorite from './components/Favorite'
 import Music from './components/Music'
 import Rap from './components/Rap'
@@ -163,27 +162,20 @@ return(
                        <Music music={music}/> 
                        
                        <Edit music={music} handleEdit={handleEdit}/>
-                          <button className="btn btn-danger mb-1" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
+                          <button className="btn btn-danger mb-1 delete-btn" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
                           
                        </>
                        : null}
                       
                       
                      
-                      { showRock ? <> 
-                      <Rock music={music}/> 
-                      </>
-                      :  null}
+                      { showRock ?  
+                      <Rock music={music}/> :  null}
 
-                      { showRap ? <> 
-                      <Rap music={music}/> 
-                      </>
-                      :  null}
+                      { showRap ? 
+                      <Rap music={music}/>:  null}
 
-                      { showFav ? <> 
-                      <Favorite music={music}/> 
-                      </>
-                      :  null}
+                      { showFav ? <Favorite music={music}/> :  null}
                       
                 </div>
                 
