@@ -160,6 +160,7 @@ margin: 8px;
   position: relative;
   height: 50rem;
   overflow: hidden;
+  margin-right: 2rem;
 }
 
 img {
