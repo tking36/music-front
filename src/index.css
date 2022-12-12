@@ -42,6 +42,7 @@ div.scroll {
   box-shadow: 0px 5px 10px rgb(0, 0, 0);
   width: 25rem;
   margin-right: 10px;
+  border-radius: 15px;
 }
 
 
@@ -193,7 +194,9 @@ img {
   z-index: 999 !important;
 }
 
-
+.playlist {
+  border-radius: 15px;
+}
 
 
 
