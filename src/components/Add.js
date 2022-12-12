@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 const Add = (props) => {
-   const [song, setSong] = useState({name: '', image:'', artist:'', album:'', genre: '', year: 0, favorite: false, player:''})
+   const [song, setSong] = useState({name: '', image:'', artist:'', album:'', genre: '', year: 0, favorite: false, player:'', lyrics:''})
    
 
    const handleChange = (event) => {
@@ -11,7 +11,7 @@ const Add = (props) => {
 
    const handleSubmit = (event) => {
     console.log(song);
-      event.preventDefault()
+      // event.preventDefault()
       props.handleCreate(song)
    }
 
@@ -93,6 +93,8 @@ const Add = (props) => {
                                   <input type="text" name='player' onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
                                   <div id="emailHelp" class="form-text">Type in the player url from spotify</div>
                                 </div>
+
+
 
                                 <input type="submit"/>
 
