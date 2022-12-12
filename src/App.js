@@ -12,7 +12,6 @@ import Add from './components/Add'
 const App = () => {
 
   const [music,setMusic] = useState([])
-  const [lyrics,setLyrics] = useState([])
   
 
   const getMusic = () =>{
@@ -52,6 +51,16 @@ const App = () => {
     })
 }
 
+const handleLyrics = (data) => {
+  axios.put('http://localhost:3000/music/' + data._id, data)
+  .then((response) => {
+     let newMusic = music.map((musics) => {
+       return musics._id !== data._id? musics:data         
+     })
+     setMusic(newMusic)
+     getMusic()
+  })
+ }
 
 useEffect(() => {
   getMusic()
@@ -98,13 +107,6 @@ const revealFav = () => {
   setShowRap(false)
 }
 
-const revealLyrics = () => {
-  setShowLyrics(!showLyrics)
-  {music.map((music) => {
-    setLyrics(music.lyrics)
-  })}}
-
-
 
 
 
@@ -139,20 +141,13 @@ return(
                 <button onClick={revealRap} className='btn btn-secondary'>Rap</button>
               </div>
             </div>
-              <div className='container'>
-                {music.map((music) => {
-                  return  (
-                    showLyrics ? <Lyrics music={music}/> : null
-                    
-                  )
-                  
-                })}
-                
-
+            
+             <div>
+             
 
               </div>
-       
         </div>
+             
           
           
             <div className="scroll main">
@@ -164,9 +159,10 @@ return(
                   <div className=' card-container'>
                       {showCards ? <>
                        <Music music={music}/> 
+                       
                        <Edit music={music} handleEdit={handleEdit}/>
                           <button className="btn btn-danger mb-1" onClick={() => {handleDelete(music)}} value={music._id}>Delete a Song</button>
-                          <button class="glow-on-hover" onClick={() => {revealLyrics(music)}} value={music._id}>Lyrics</button>
+                          
                        </>
                        : null}
                       
@@ -211,5 +207,3 @@ return(
 
 }
 export default App;
-
-
