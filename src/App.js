@@ -8,6 +8,8 @@ import Rock from './components/Rock'
 import Edit from './components/Edit'
 import Add from './components/Add'
 
+import Marquee from "react-fast-marquee";
+
 const App = () => {
 
   const [music,setMusic] = useState([])
@@ -116,12 +118,17 @@ return(
         <Add handleCreate={handleCreate}/>
         {/* <button onClick={revealEdit} className='btn btn-warning btn-lg edit-button'>Edit Song</button> */}
       </div>
+      <Marquee direction="up">
+        {music.map((music) => {
+          return (<img className='marquee-image mt-2' src={music.image}/>)
+            })}
+        </Marquee>
     </nav>
     <div className='middle'>
         <div className='left-side-bar'>
           
             
-            <div class="btn-group genre">
+            <div class="btn-group genre left-side-buttons">
             <button onClick={revealFav} className='btn btn-secondary'>Favorites</button>
               <button  class="btn btn-dark btn-lg  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Genre
@@ -134,9 +141,9 @@ return(
             
              <div>
              
-             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="340" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="340" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               </div>
         </div>
              
@@ -176,15 +183,16 @@ return(
             </div>
 
 
-        <div className='marquee-container mt-3'>
-        <marquee direction="down">
+        {/* <div className='marquee-container mt-3'>
+        <Marquee direction="up">
         {music.map((music) => {
           return (<img className='marquee-image mt-2' src={music.image}/>)
             })}
-        </marquee>
-        </div>
+        </Marquee>
+        </div> */}
 
     </div>
+    
    </div> 
    
    
