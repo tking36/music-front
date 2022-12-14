@@ -67,7 +67,7 @@ const[showFav,setShowFav]=useState(false);
 
 const[showRap,setShowRap]=useState(false);
 
-const[showLyrics,setShowLyrics]=useState(false);
+
 
 
 
@@ -141,9 +141,9 @@ return(
             
              <div>
              
-             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="340" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/5WrAebVBwK6F8K1BHhG1KE?utm_source=generator" width="100%" height="690" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-             <iframe className='playlist' src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="340" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+             {/* <iframe className='playlist' src="https://open.spotify.com/embed/playlist/6IYrr80YrKOD8Bse6gWClJ?utm_source=generator" width="100%" height="" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> */}
               </div>
         </div>
              
@@ -183,13 +183,7 @@ return(
             </div>
 
 
-        {/* <div className='marquee-container mt-3'>
-        <Marquee direction="up">
-        {music.map((music) => {
-          return (<img className='marquee-image mt-2' src={music.image}/>)
-            })}
-        </Marquee>
-        </div> */}
+       
 
     </div>
     

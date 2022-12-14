@@ -11,7 +11,7 @@ const Add = (props) => {
 
    const handleSubmit = (event) => {
     console.log(song);
-      // event.preventDefault()
+      event.preventDefault()
       props.handleCreate(song)
    }
 
