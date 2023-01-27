@@ -52,12 +52,17 @@ const App = () => {
     })
 }
 
-
+const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 useEffect(() => {
-  getMusic()
-  
-}, [])
+  getMusic();
+
+  const handleResize = () => setWindowWidth(window.innerWidth);
+  window.addEventListener('resize', handleResize);
+
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
+
 
 const[showCards,setShowCards]=useState(true);
 
@@ -100,9 +105,6 @@ const revealFav = () => {
 }
 
 
-
-
-
 return(
   <div className='grid'>
     
@@ -111,29 +113,31 @@ return(
       <div className='nav-buttons-left'>
        
         
-        <button  onClick={revealCards} className='btn btn-dark btn-lg all-songs' type='button'>All Songs</button>
+        <button  onClick={revealCards} className='btn btn-dark btn-lg all-songs nav-button' type='button'>All Songs</button>
       </div>
-      <h1>Music</h1>
+      <h1 className='nav-title'>Music</h1>
       <div className='nav-button'>
-        <Add handleCreate={handleCreate}/>
+        <Add handleCreate={handleCreate} className="nav-button"/>
         {/* <button onClick={revealEdit} className='btn btn-warning btn-lg edit-button'>Edit Song</button> */}
       </div>
-      <Marquee direction="up">
+      {windowWidth > 500 ? 
+      <Marquee className="marquee-component"direction="up">
         {music.map((music) => {
           return (<img className='marquee-image mt-2' src={music.image}/>)
             })}
         </Marquee>
+        : null}
     </nav>
     <div className='middle'>
         <div className='left-side-bar'>
           
             
-            <div class="btn-group genre left-side-buttons">
+            <div className="btn-group genre left-side-buttons">
             <button onClick={revealFav} className='btn btn-secondary'>Favorites</button>
               <button  class="btn btn-dark btn-lg  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Genre
               </button>
-              <div class="dropdown-menu">
+              <div className="dropdown-menu">
                 <button onClick={revealRock} className='btn btn-secondary'>Rock</button>
                 <button onClick={revealRap} className='btn btn-secondary'>Rap</button>
               </div>

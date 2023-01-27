@@ -34,9 +34,9 @@ const Edit = (props) => {
         
         <div>
         
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Song</button>
-                                <div class="dropdown-menu">
+                            <div className="btn-group dropup">
+                                <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Song</button>
+                                <div className="dropdown-menu">
                                 <form className="bg-light edit-form" onSubmit={handleSubmit}>
                                     <label className='form-label gray' htmlFor='image'>Image:</label>
                                     <input  className='form-control' type='text' name='image' onChange={handleChange} value={song.image}/>

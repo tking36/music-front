@@ -27,21 +27,21 @@ const Add = (props) => {
 
    return(
      <div>
-        <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" className="btn btn-dark btn-lg nav-button" data-toggle="modal" data-target="#exampleModal">
           Add Song
         </button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-                      <div class="modal-body">
+                      <div className="modal-body">
                       <div className="add-form shadow-none p-3 mb-5 bg-light rounded  m-auto">
 
                             <form onSubmit={handleSubmit}>
@@ -73,25 +73,25 @@ const Add = (props) => {
                                 <div className="mb-1">
                                   <label htmlFor='genre' className="form-label">Genre: </label>
                                   <input type="text" name='genre' onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                  <div id="emailHelp" class="form-text">Type in the genre of the song</div>
+                                  <div id="emailHelp" className="form-text">Type in the genre of the song</div>
                                 </div>
 
                                 <div className="mb-1">
                                   <label htmlFor='year' className="form-label">Year: </label>
                                   <input type="text" name='year' onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                  <div id="emailHelp" class="form-text">Type in the year of song</div>
+                                  <div id="emailHelp" className="form-text">Type in the year of song</div>
                                 </div>
 
                                 <div className="mb-1">
                                   <label htmlFor='favorite' className="form-label">Favorite: </label>
                                   <input type='checkbox' onClick={checkBox} value={checked ? true : false}name='favorite' onChange={handleChange}   aria-describedby="emailHelp"/>
-                                  <div id="emailHelp" class="form-text">Check to Favorite</div>
+                                  <div id="emailHelp" className="form-text">Check to Favorite</div>
                                 </div>
 
                                 <div className="mb-1">
                                   <label htmlFor='player' className="form-label">Player: </label>
                                   <input type="text" name='player' onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                  <div id="emailHelp" class="form-text">Type in the player url from spotify</div>
+                                  <div id="emailHelp" className="form-text">Type in the player url from spotify</div>
                                 </div>
 
 
@@ -102,9 +102,9 @@ const Add = (props) => {
 
                             </div>
                       </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
